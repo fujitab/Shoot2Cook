@@ -1,6 +1,14 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, File, UploadFile
 from pydantic import BaseModel
+import shutil
+import os
+
 app = FastAPI()
+
+# アップロードされたファイルを保存する一時的なディレクトリを作成（もしなければ）
+UPLOAD_DIR = "temp_uploads"
+if not os.path.exists(UPLOAD_DIR):
+    os.makedirs(UPLOAD_DIR)
 
 @app.get("/")
 async def read_root():
@@ -28,3 +36,15 @@ async def create_item(item: Item):
     return {"item_name": item.name, "price_with_tax": item.price + (item.tax or 0)}
 
 
+# 冷蔵庫の画像をアップロードするエンドポイント
+@app.post("/upload-refrigerator-image/")
+async def upload_refrigerator_image(image: UploadFile = File(...)):
+    file_path = os.path.join(UPLOAD_DIR, image.filename)
+    try:
+        with open(file_path, "wb") as buffer: # バッファにファイルを書き込む
+            shutil.copyfileobj(image.file, buffer) 
+        return {"filename": image.filename, "content_type": image.content_type, "message": f"ファイル '{image.filename}' が '{UPLOAD_DIR}' に保存されました。"}
+    except Exception as e:
+        return {"error": f"ファイルのアップロード中にエラーが発生しました: {e}"}
+    finally:
+        await image.close()

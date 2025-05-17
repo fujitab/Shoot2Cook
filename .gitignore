@@ -48,3 +48,4 @@ instance/
 
 # プロジェクト固有
 .memo/ 
+temp*/
