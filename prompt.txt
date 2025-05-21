@@ -9,39 +9,117 @@
 2.  「ラク」: 調理手順のステップ数が最も少なく、かつ洗い物の点数が最も少ないレシピ。包丁やまな板を極力使わないものが理想です。
 3.  「美味しい」: 「ズボラ飯」という枠にとらわれず、一般的な意味で本格的で美味しいと考えられるレシピ。ただし、手近な食材で作れる範囲でお願いします。
 
-レシピには、以下の情報を必ず含めて、指定のJSON形式で回答してください。不足している情報があれば、一般的な知識や創造力で補完してください。ただし、あまりにも非現実的な食材や手順は避けてください。
-余計な文字列は含めずJSON形式のみを出力せよ。
+レシピには、以下の情報を必ず含めて、指定の区切り文字付きテキスト形式で回答してください。不足している情報があれば、一般的な知識や創造力で補完してください。ただし、あまりにも非現実的な食材や手順は避けてください。
+余計な文字列は含めず指定フォーマットのみを出力すること。各セクションの開始と終了を明示的に示すこと。
 
-JSON形式:
-{
-  "identifiedIngredients": [
-    { "name": "食材名", "confidence": 0.X }
-  ],
-  "recipes": [
-    {
-      "categoryTag": "早い",
-      "name": "料理名（キャッチーな名前で！）",
-      "servingsDescription": "（1人分）",
-      "prerequisites": "",
-      "ingredients": [
-        { "name": "材料名", "amount": "具体的な分量", "cost": "おおよその目安費用" }
-      ],
-      "totalCostEstimate": "全体の目安費用",
-      "nutritionEstimate": {
-        "calories": "カロリー",
-        "protein": "タンパク質",
-        "fat": "脂質",
-        "carbohydrates": "炭水化物",
-        "salt": "塩分"
-      },
-      "instructions": [
-        "ステップ1"
-      ],
-      "estimatedTime": "調理時間",
-      "dishwashingItems": "主な洗い物",
-      "points": [
-        "おすすめポイント1"
-      ]
-    }
-  ]
-}
+区切り文字付きテキスト形式:
+
+---IDENTIFIED_INGREDIENTS_START---
+食材名:食材名|確信度:0.X
+食材名:食材名|確信度:0.X
+---IDENTIFIED_INGREDIENTS_END---
+
+---RECIPE_START:早い---
+料理名:キャッチーな料理名
+分量:1人分
+前提条件:必要な場合のみ記載
+
+---INGREDIENTS_START---
+材料名|具体的な分量|おおよその目安費用
+材料名|具体的な分量|おおよその目安費用
+---INGREDIENTS_END---
+
+総費用:全体の目安費用
+
+---NUTRITION_START---
+カロリー:XXXkcal
+タンパク質:XXg
+脂質:XXg
+炭水化物:XXg
+塩分:XXg
+---NUTRITION_END---
+
+---INSTRUCTIONS_START---
+1. ステップ1
+2. ステップ2
+---INSTRUCTIONS_END---
+
+調理時間:XX分
+洗い物:主な洗い物
+
+---POINTS_START---
+• おすすめポイント1
+• おすすめポイント2
+---POINTS_END---
+
+---RECIPE_END---
+
+---RECIPE_START:ラク---
+料理名:キャッチーな料理名
+分量:1人分
+前提条件:必要な場合のみ記載
+
+---INGREDIENTS_START---
+材料名|具体的な分量|おおよその目安費用
+材料名|具体的な分量|おおよその目安費用
+---INGREDIENTS_END---
+
+総費用:全体の目安費用
+
+---NUTRITION_START---
+カロリー:XXXkcal
+タンパク質:XXg
+脂質:XXg
+炭水化物:XXg
+塩分:XXg
+---NUTRITION_END---
+
+---INSTRUCTIONS_START---
+1. ステップ1
+2. ステップ2
+---INSTRUCTIONS_END---
+
+調理時間:XX分
+洗い物:主な洗い物
+
+---POINTS_START---
+• おすすめポイント1
+• おすすめポイント2
+---POINTS_END---
+
+---RECIPE_END---
+
+---RECIPE_START:美味しい---
+料理名:キャッチーな料理名
+分量:1人分
+前提条件:必要な場合のみ記載
+
+---INGREDIENTS_START---
+材料名|具体的な分量|おおよその目安費用
+材料名|具体的な分量|おおよその目安費用
+---INGREDIENTS_END---
+
+総費用:全体の目安費用
+
+---NUTRITION_START---
+カロリー:XXXkcal
+タンパク質:XXg
+脂質:XXg
+炭水化物:XXg
+塩分:XXg
+---NUTRITION_END---
+
+---INSTRUCTIONS_START---
+1. ステップ1
+2. ステップ2
+---INSTRUCTIONS_END---
+
+調理時間:XX分
+洗い物:主な洗い物
+
+---POINTS_START---
+• おすすめポイント1
+• おすすめポイント2
+---POINTS_END---
+
+---RECIPE_END---
