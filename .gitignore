@@ -49,3 +49,5 @@ instance/
 # プロジェクト固有
 .memo/ 
 temp*/
+temp.txt
+Shoot2Cook.code-workspace
