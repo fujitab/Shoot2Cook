@@ -84,9 +84,18 @@ async def generate_recipe_from_image_with_gemini(image_path: str, user_prompt: s
             uploaded_image, # アップロードした画像
         ]
 
-        # レシピを生成 (レスポンス形式をJSONにするようプロンプトで指示している前提)
-        response = await model.generate_content_async(prompt_parts) # 非同期で呼び出す場合
 
+
+        # 実際にAPIを呼び出す代わりに、テスト用のレスポンスを返す
+        # テスト用のレスポンスを返す
+        with open("mock_response_text.txt", "r", encoding="utf-8") as f:
+            generated_text = f.read()
+            return generated_text
+        response = ""
+
+
+        # レシピを生成
+        # response = await model.generate_content_async(prompt_parts) # 非同期で呼び出す場合
         # レスポンスのテキストを取得
         generated_text = ""
         if response.parts:
